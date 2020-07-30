@@ -1,0 +1,50 @@
+<div class="container">
+  <h2 class="text-center">User Information</h2>
+  <h3 class="text-center" ng-if="!myinfoCtrl.userInfo">Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a></h3>
+
+  <div ng-if="myinfoCtrl.userInfo">
+<table id="UserInformation">
+  <tr>
+    <th>First Name:</th>
+    <td>{{myinfoCtrl.userInfo.firstname}}</td>
+  </tr>
+  <tr>
+    <th>Last Name:</th>
+    <td>{{myinfoCtrl.userInfo.lastname}}</td>
+  </tr>
+  <tr>
+    <th>Email:</th>
+    <td>{{myinfoCtrl.userInfo.email}}</td>
+  </tr>
+  <tr ng-if="myinfoCtrl.userInfo.phone">
+    <th>Phone:</th>
+    <td>{{myinfoCtrl.userInfo.phone}}</td>
+  </tr>
+</table>
+
+  <hr ng-if="myinfoCtrl.userInfo.dish">
+    <div class="favourite" ng-if="myinfoCtrl.userInfo.dish">
+      <h3>Favorite Dish</h3>
+          <div class="menu-item-tile">
+              <div class="row">
+                <div class="col-sm-5">
+                  <div class="menu-item-photo">
+                    <div>{{myinfoCtrl.userInfo.dish.short_name}}</div>
+                    <img class="img-responsive" width="250" height="150" ng-src="{{myinfoCtrl.imageUrl}}" alt="{{myinfoCtrl.userInfo.dish.name}}">
+                  </div>
+                  <div class="menu-item-price">{{myinfoCtrl.userInfo.dish.price_small | currency}}<span> {{myinfoCtrl.userInfo.dish.small_portion_name}}</span> {{myinfoCtrl.userInfo.dish.price_large | currency}} <span>{{myinfoCtrl.userInfo.dish.large_portion_name}}</span></div>
+                </div>
+                <div class="menu-item-description col-sm-7">
+                  <h3 class="menu-item-title">{{myinfoCtrl.userInfo.dish.name}}</h3>
+                  <p class="menu-item-details">{{myinfoCtrl.userInfo.dish.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    <hr ng-if="myinfoCtrl.userInfo.dish">
+
+    <div id="delete-user-button" class="text-center">
+      <button class="btn btn-primary" ng-click="myinfoCtrl.deleteUser()">Delete User</button>
+    </div>
+  </div>
